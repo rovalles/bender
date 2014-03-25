@@ -10,9 +10,18 @@ function install(){
     local path=${src[0]}
     local file=${src[1]}
     local so=${src[2]}
+    local base=$(basename $path)
+    local base=${base%%.*}
+    echo $(basename $base)
     [ ! -d 'packages' ] && mkdir packages
     cd packages
     git clone $path
+    if [ $so ] ; then
+        cd $base
+        chmod 777 $file
+        cd ..
+    fi
+    cd ..
 }
 
 function uninstall(){
