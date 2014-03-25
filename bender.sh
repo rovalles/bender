@@ -36,7 +36,9 @@ if [ -a "config.sh" ] ; then
     while read line
     do
         $CMD "$line"
+        COUNT=$((count+1))
     done < "config.sh"
+    echo $COUNT
 else
     echo ""
 fi
