@@ -1,18 +1,13 @@
 #!/bin/bash
 
-
 CMD=$1
 COUNT=0
-
+path=""
+file=""
+so=""
+base=""
 
 function install(){
-    declare -a src=($1)
-    local path=${src[0]}
-    local file=${src[1]}
-    local so=${src[2]}
-    local base=$(basename $path)
-    local base=${base%%.*}
-    echo $(basename $base)
     [ ! -d 'packages' ] && mkdir packages
     cd packages
     git clone $path
@@ -24,21 +19,32 @@ function install(){
     cd ..
 }
 
-function uninstall(){
-    echo "uninstall"
-}
-
-function unupdate(){
-    echo "unupdate"
+function update(){
+    cd packages/$base
+    git pull
+    cd ../../
 }
 
 if [ -a "config.sh" ] ; then
     while read line
     do
-        $CMD "$line"
-        COUNT=$((count+1))
+        declare -a src=($line)
+        path=${src[0]}
+        file=${src[1]}
+        so=${src[2]}
+        base=$(basename $path)
+        base=${base%%.*}
+        tput setaf 6
+        echo $(basename $base)
+        tput setaf 7
+
+        $CMD
+        COUNT=$((COUNT+1))
+        echo ""
     done < "config.sh"
-    echo $COUNT
+    echo "$COUNT Repos"
 else
-    echo ""
+    echo "Config.sh required."
 fi
+
+exit $?
