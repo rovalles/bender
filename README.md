@@ -7,4 +7,4 @@ git clone https://github.com/rovalles/bender.git
 
 Add git scripts to config.sh
 
-Run ./bender.sh install
+Run ./bender.sh to install
