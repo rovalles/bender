@@ -26,7 +26,7 @@ function update(){
     cd ../../
 }
 
-if [ -a "packages/config.sh" ] ; then
+if [ -a "config.sh" ] ; then
     while read line
     do
         declare -a src=($line)
@@ -42,7 +42,7 @@ if [ -a "packages/config.sh" ] ; then
         $CMD
         COUNT=$((COUNT+1))
         echo ""
-    done < "packages/config.sh"
+    done < "config.sh"
     echo "$COUNT Repos"
 else
     echo "config.sh required."
