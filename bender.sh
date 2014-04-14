@@ -14,6 +14,7 @@ function install(){
     if [ $so ] ; then
         cd $base
         chmod 777 $file
+        ln -s $file ../../$file
         cd ..
     fi
     cd ..
