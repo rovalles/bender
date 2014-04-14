@@ -6,6 +6,7 @@ path=""
 file=""
 so=""
 base=""
+symLink=""
 
 function install(){
     [ ! -d 'packages' ] && mkdir packages
@@ -17,7 +18,7 @@ function install(){
         cd ..
     fi
     cd ..
-    ln -s "$(pwd)/packages/$base/$file" $file
+    ln -s "$(pwd)/packages/$base/$file" $symLink
 }
 
 function update(){
@@ -33,6 +34,7 @@ if [ -a "config.sh" ] ; then
         path=${src[0]}
         file=${src[1]}
         so=${src[2]}
+        symLink=${src[3]}
         base=$(basename $path)
         base=${base%%.*}
         tput setaf 6
