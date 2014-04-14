@@ -14,10 +14,10 @@ function install(){
     if [ $so ] ; then
         cd $base
         chmod 777 $file
-        ln -s $file ../../$file
         cd ..
     fi
     cd ..
+    ln -s "$(pwd)/packages/$base/$file" $file
 }
 
 function update(){
@@ -26,7 +26,7 @@ function update(){
     cd ../../
 }
 
-if [ -a "config.sh" ] ; then
+if [ -a "packages/config.sh" ] ; then
     while read line
     do
         declare -a src=($line)
@@ -42,10 +42,10 @@ if [ -a "config.sh" ] ; then
         $CMD
         COUNT=$((COUNT+1))
         echo ""
-    done < "config.sh"
+    done < "packages/config.sh"
     echo "$COUNT Repos"
 else
-    echo "Config.sh required."
+    echo "config.sh required."
 fi
 
 exit $?
