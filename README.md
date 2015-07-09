@@ -12,7 +12,7 @@ BENDERHOME="Path to directory"
 ### autoload
 
 ``` bash
-source bender/autoload.sh
+source bender/autoload/bender.sh
 ```
 
 ### install
