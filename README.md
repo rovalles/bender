@@ -1,10 +1,32 @@
 bender
 ======
 
-I dont add new shell scripts(that dont auto install) in /usr/bin, /bin, or w/e.
+## Settings for bash_profile/bashrc
 
-git clone https://github.com/rovalles/bender.git 
+### variables
 
-Add git scripts to config.sh
+``` bash
+BENDERHOME="Path to directory"
+``` 
 
-Run ./bender.sh to install
+### autoload
+
+``` bash
+source bender/autoload.sh
+```
+
+### install
+
+``` bash
+source  bender/bin/binder.sh
+```
+
+#### directory structure
+<directory>/bundle/<project>/{autoload|bin|symlinks}/
+
+#### commands
+``` bash
+bender install|remove|update
+```
+
+or something like that.
