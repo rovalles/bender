@@ -1,8 +1,8 @@
+Create prehook for first install
 
-        #git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-        #Install homebrew
+Install Vundle
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-        #cd into YouComplete Me
-        #Run install
-
-        #symlink bash_profile
+Install  YouComplete Me
+cd ~/.vim/bundle/YouCompleteMe/ \
+&& ~/.vim/bundle/YouCompleteMe/install.sh
