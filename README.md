@@ -21,10 +21,12 @@ source bender/autoload.sh
 source  bender/bin/binder.sh
 ```
 
-#### directory structure
+## Folder Structure & Command to make all the changes
+
+### directory structure
 <directory>/bundle/<project>/{autoload|bin|symlinks}/
 
-#### commands
+### commands
 ``` bash
 bender install|remove|update
 ```
