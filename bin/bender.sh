@@ -1,53 +1,32 @@
 #!/bin/bash
 
-CMD=$1
-COUNT=0
-path=""
-file=""
-so=""
-base=""
-symLink=""
+DIR=~/dotfiles
 
 function install(){
-    [ ! -d 'packages' ] && mkdir packages
-    cd packages
-    git clone $path
-    if [ $so ] ; then
-        cd $base
-        chmod 777 $file
-        cd ..
-    fi
-    cd ..
-    ln -s "$(pwd)/packages/$base/$file" $symLink
+    ln -s $1 ~/.$(basename  $1)
+    echo "$1 linked"
 }
 
-function update(){
-    cd packages/$base
-    git pull
-    cd ../../
+
+function remove(){
+    base=$(basename  $1)
+    rm ~/.$base
+    unlink ~/.$base
+    echo "~/.$base unlinked"
 }
 
-if [ -a "config.sh" ] ; then
-    while read line
+
+function init(){
+    for d in $DIR/bundle/*/symlinks/*
     do
-        declare -a src=($line)
-        path=${src[0]}
-        file=${src[1]}
-        so=${src[2]}
-        symLink=${src[3]}
-        base=$(basename $path)
-        base=${base%%.*}
-        tput setaf 6
-        echo $(basename $base)
-        tput setaf 7
+        if [[ $b == "-r" ]] ; then
+            remove $d
+        else
+            install $d 
+        fi
+    done
+}
 
-        $CMD
-        COUNT=$((COUNT+1))
-        echo ""
-    done < "config.sh"
-    echo "$COUNT Repos"
-else
-    echo "config.sh required."
-fi
+[[ -d $DIR ]] && init $1
 
 exit $?

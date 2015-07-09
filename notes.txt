@@ -1,0 +1,8 @@
+
+        #git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+        #Install homebrew
+
+        #cd into YouComplete Me
+        #Run install
+
+        #symlink bash_profile
