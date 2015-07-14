@@ -2,31 +2,31 @@
 
 DIR=~/dotfiles
 
-function install(){
-    ln -s $1 ~/.$(basename  $1)
+function benderInstall(){
+    ln -s "$1" ~/.$(basename  "$1")
     echo "$1 linked"
 }
 
 
-function remove(){
-    base=$(basename  $1)
+function benderRemove(){
+    base=$(basename  "$1")
     rm ~/.$base
     unlink ~/.$base
-    echo "~/.$base unlinked"
+    echo "~.$base unlinked"
 }
 
 
-function init(){
+function benderInit(){
     for d in $DIR/bundle/*/symlinks/*
     do
-        if [[ $b == "-r" ]] ; then
-            remove $d
+        if [[ "$1" == "remove" ]] ; then
+            benderRemove "$d"
         else
-            install $d 
+            benderInstall "$d"
         fi
     done
 }
 
-[[ -d $DIR ]] && init $1
+[[ -d $DIR ]] && benderInit "$1"
 
 exit $?
