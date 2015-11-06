@@ -3,7 +3,9 @@
 DIR=~/dotfiles
 
 function benderInstall(){
-    ln -s "$1" ~/.$(basename  "$1")
+    if [ -z "$2" ] ; then
+        ln -s "$1" ~/.$(basename  "$1")
+    fi
     echo "$1 linked"
 }
 
@@ -20,13 +22,13 @@ function benderInit(){
     for d in $DIR/bundle/*/symlinks/*
     do
         if [[ "$1" == "remove" ]] ; then
-            benderRemove "$d"
+            benderRemove "$d" "$2" 
         else
-            benderInstall "$d"
+            benderInstall "$d" "$2"
         fi
     done
 }
 
-[[ -d $DIR ]] && benderInit "$1"
+[[ -d $DIR ]] && benderInit "$1" "$2"
 
 exit $?
