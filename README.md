@@ -6,19 +6,19 @@ bender
 ### variables
 
 ``` bash
-BENDERHOME="Path to directory"
+DOTFILES_HOME="Path to directory"
 ``` 
 
-### autoload
+### Load
 
 ``` bash
-source bender/autoload/bender.sh
+source bender/init.sh
 ```
 
 ### install
 
 ``` bash
-source  bender/bin/binder.sh
+bender install
 ```
 
 ## Folder Structure & Command to make all the changes
