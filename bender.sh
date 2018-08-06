@@ -75,5 +75,4 @@ function bender(){
 
 if [[ -d "$DOTFILES_HOME" ]]; then
   benderAutoload
-  benderBin
 fi
