@@ -1,38 +1,11 @@
 #!/bin/bash
 
-if [ ! -d "$DOTFILES_HOME" ] ; then
-  export DOTFILES_HOME=~/dotfiles
-fi
-
-dotfiles="$DOTFILES_HOME"
-
 function benderAutoload(){
-  for file in ~/dotfiles/bundle/*/autoload/*; do
+  for file in ~/dotfiles/bundle/*.sh; do
       [ -r "$file" ] && source "$file"
   done
   unset file
 }
-
-function benderBin(){
-  local scripts=""
-  local fileName=""
-
-  for file in ~/dotfiles/bundle/*/bin/*; do
-      fileName="$(basename "$file")"
-      fileName="${fileName%.*}"
-      scripts="alias $fileName=$file;$scripts"
-  done
-  eval "$scripts"
-  unset file
-}
-
-# function benderCheck(){
-#   local file="$1"
-
-#   if [ -L $("$dotfiles$(basename $file)") ]  ; then
-#     echo "$file linked"
-#   fi
-# }
 
 function benderInstall(){
   local file="$1"
@@ -65,14 +38,10 @@ function bender(){
         benderRemove "$file"
     elif [[ "$cmd" == "install" ]] ; then
         benderInstall "$file"
-    # elif [[ "$cmd" == "check" ]] ; then
-    #     benderCheck "$file"
     else
       echo "No idea what command that is."
     fi
   done
 }
 
-if [[ -d "$DOTFILES_HOME" ]]; then
-  benderAutoload
-fi
+benderAutoload
